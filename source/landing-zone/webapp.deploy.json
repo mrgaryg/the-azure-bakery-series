@@ -73,7 +73,7 @@
   },
   "variables": {
     "logAnalyticsName": "[concat(parameters('uniqueIdentifier'), '-mgmt-log01')]",
-    "keyVaultName": "[concat(parameters('uniqueIdentifier'), '-webapp-kv03')]",
+    "keyVaultName": "[concat(parameters('uniqueIdentifier'), '-webapp-kv01')]",
     "sqlServerName": "[concat(parameters('uniqueIdentifier'), '-webapp-sql01')]",
     "sqlDatabaseName": "[concat(parameters('uniqueIdentifier'), '-webapp-sqldb01')]",
     "appServicePlanName": "[concat(parameters('uniqueIdentifier'), '-webapp-plan01')]",
