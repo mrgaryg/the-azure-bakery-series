@@ -2,16 +2,15 @@
   "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "Name": {
+    "name": {
       "type": "string",
       "defaultValue": "mgmt-rg",
       "metadata": {
         "description": "Name of the resource group to create"
       }
     },
-    "Location": {
+    "location": {
       "type": "string",
-      "defaultValue": "westeurope",
       "metadata": {
         "description": "Location for the resource group"
       }
@@ -38,8 +37,8 @@
       "comments": "Resource group",
       "type": "Microsoft.Resources/resourceGroups",
       "apiVersion": "2019-10-01",
-      "name": "[parameters('Name')]",
-      "location": "[parameters('Location')]",
+      "name": "[parameters('name')]",
+      "location": "[parameters('location')]",
       "tags": "[parameters('tagValues')]",
       "properties": {}
     },
@@ -48,8 +47,8 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "name": "applyLock",
-      "resourceGroup": "[parameters('Name')]",
-      "dependsOn": ["[parameters('Name')]"],
+      "resourceGroup": "[parameters('name')]",
+      "dependsOn": ["[parameters('name')]"],
       "properties": {
         "mode": "Incremental",
         "template": {
