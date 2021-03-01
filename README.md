@@ -10,7 +10,7 @@ The idea behind this series is to approach Azure in an easy-to-understand and fu
 
 `az login`
 
-`az account set -s <mgmtSubscriptionId>`
+`az account set -s <managementSubscriptionId>`
 
 `az deployment sub create -l <location> -f source/management/mgmt-rg.deploy.json`
 
