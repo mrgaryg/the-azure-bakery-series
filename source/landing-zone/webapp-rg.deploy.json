@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Name": {
+      "type": "string",
+      "defaultValue": "webapp-rg",
+      "metadata": {
+        "description": "Name of the resource group to create"
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Location for the resource group"
+      }
+    },
+    "tagValues": {
+      "type": "object",
+      "defaultValue": {
+        "WorkloadName": "Web Application",
+        "DataClassification": "Public",
+        "Criticality": "Medium",
+        "BusinessUnit": "Marketing",
+        "CostCenter": "7629",
+        "Owner": "john.doe@robino.io"
+      },
+      "metadata": {
+        "description": "Resource tags"
+      }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "comments": "Resource group",
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2019-10-01",
+      "name": "[parameters('Name')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tagValues')]",
+      "properties": {}
+    },
+    {
+      "comments": "Delete lock",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "applyLock",
+      "resourceGroup": "[parameters('Name')]",
+      "dependsOn": ["[parameters('Name')]"],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.Authorization/locks",
+              "apiVersion": "2017-04-01",
+              "name": "resourceGroupCanNotDelete",
+              "properties": {
+                "level": "CanNotDelete",
+                "notes": "Prevent deletion of the resource group"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
