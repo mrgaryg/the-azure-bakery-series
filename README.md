@@ -14,7 +14,7 @@ The idea behind this series is to approach Azure in an easy-to-understand and fu
 
 `az deployment sub create -l <location> -f source/management/mgmt-rg.deploy.json`
 
-`az deployment group create -l <location> -f source/management/mgmt.deploy.json`
+`az deployment group create -g mgmt-rg -f source/management/mgmt.deploy.json`
 
 ### Landing zone
 
@@ -24,4 +24,4 @@ The idea behind this series is to approach Azure in an easy-to-understand and fu
 
 `az deployment sub create -l <location> -f source/landing-zone/webapp-rg.deploy.json`
 
-`az deployment group create -l <location> -f source/landing-zone/webapp.deploy.json`
+`az deployment group create -g webapp-rg -f source/landing-zone/webapp.deploy.json`
