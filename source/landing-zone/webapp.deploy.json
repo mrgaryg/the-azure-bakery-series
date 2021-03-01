@@ -5,13 +5,13 @@
     "uniqueIdentifier": {
       "type": "string",
       "metadata": {
-        "description": "Unique identifier for global name scope."
+        "description": "Unique identifier for global name scope"
       }
     },
     "mgmtSubscriptionId": {
       "type": "string",
       "metadata": {
-        "description": "Management subscription ID."
+        "description": "Management subscription ID"
       }
     },
     "tagValues": {
@@ -25,20 +25,20 @@
         "Owner": "john.doe@robino.io"
       },
       "metadata": {
-        "description": "Resource tags."
+        "description": "Resource tags"
       }
     },
     "sqlAdminUserName": {
       "type": "string",
       "defaultValue": "azureadmin",
       "metadata": {
-        "description": "Admin user name for the Azure SQL instance."
+        "description": "Admin user name for the Azure SQL instance"
       }
     },
     "sqlAdminPassword": {
       "type": "securestring",
       "metadata": {
-        "description": "Admin password for the Azure SQL instance."
+        "description": "Admin password for the Azure SQL instance"
       }
     },
     "keyVault": {
@@ -48,7 +48,7 @@
         "skuFamily": "A"
       },
       "metadata": {
-        "description": "Deployment settings for Azure Key Vault instances."
+        "description": "Deployment settings for Azure Key Vault instances"
       }
     },
     "appService": {
@@ -63,12 +63,15 @@
         "autoscaleDefault": 1
       },
       "metadata": {
-        "description": "Deployment settings for Azure App Service instance."
+        "description": "Deployment settings for Azure App Service instance"
       }
     },
     "location": {
       "type": "string",
-      "defaultValue": "[resourceGroup().location]"
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for the resources"
+      }
     }
   },
   "variables": {
@@ -107,7 +110,7 @@
               "comments": "Master database security audit configuration",
               "type": "providers/diagnosticSettings",
               "apiVersion": "2017-05-01-preview",
-              "name": "[concat('Microsoft.Insights/default', '-', variables('logAnalyticsName'))]",
+              "name": "[concat('Microsoft.Insights/default ', variables('logAnalyticsName'))]",
               "dependsOn": [
                 "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), 'master')]"
               ],
@@ -151,7 +154,7 @@
               "comments": "Application database diagnostic settings configuration",
               "type": "providers/diagnosticSettings",
               "apiVersion": "2017-05-01-preview",
-              "name": "[concat('Microsoft.Insights/default', '-', variables('logAnalyticsName'))]",
+              "name": "[concat('Microsoft.Insights/default ', variables('logAnalyticsName'))]",
               "dependsOn": [
                 "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), variables('sqlDatabaseName'))]",
                 "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), 'master')]"
@@ -261,7 +264,7 @@
           "comments": "Azure Key Vault diagnostic settings configuration",
           "type": "providers/diagnosticSettings",
           "apiVersion": "2017-05-01-preview",
-          "name": "[concat('Microsoft.Insights/default', '-', variables('logAnalyticsName'))]",
+          "name": "[concat('Microsoft.Insights/default ', variables('logAnalyticsName'))]",
           "dependsOn": [
             "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]"
           ],
@@ -341,7 +344,7 @@
           "comments": "Azure App Service plan diagnostic settings configuration",
           "type": "providers/diagnosticSettings",
           "apiVersion": "2017-05-01-preview",
-          "name": "[concat('Microsoft.Insights/default', '-', variables('logAnalyticsName'))]",
+          "name": "[concat('Microsoft.Insights/default ', variables('logAnalyticsName'))]",
           "dependsOn": [
             "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
           ],
@@ -394,7 +397,7 @@
           "comments": "Azure App Service diagnostic settings configuration",
           "type": "providers/diagnosticSettings",
           "apiVersion": "2017-05-01-preview",
-          "name": "[concat('Microsoft.Insights/default', '-', variables('logAnalyticsName'))]",
+          "name": "[concat('Microsoft.Insights/default ', variables('logAnalyticsName'))]",
           "dependsOn": [
             "[resourceId('Microsoft.Web/sites', variables('appServiceAppName'))]"
           ],
@@ -473,7 +476,7 @@
               "comments": "Azure App Service staging deployment slot diagnostic settings configuration",
               "type": "providers/diagnosticSettings",
               "apiVersion": "2017-05-01-preview",
-              "name": "[concat('Microsoft.Insights/default', '-', variables('logAnalyticsName'))]",
+              "name": "[concat('Microsoft.Insights/default ', variables('logAnalyticsName'))]",
               "dependsOn": [
                 "[resourceId('Microsoft.Web/sites/slots', variables('appServiceAppName'), 'staging')]"
               ],
