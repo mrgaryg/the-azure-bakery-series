@@ -8,7 +8,7 @@
         "description": "Unique identifier for global name scope"
       }
     },
-    "mgmtSubscriptionId": {
+    "managementSubscriptionId": {
       "type": "string",
       "metadata": {
         "description": "Management subscription ID"
@@ -115,7 +115,7 @@
                 "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), 'master')]"
               ],
               "properties": {
-                "workspaceId": "[resourceId(parameters('mgmtSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
+                "workspaceId": "[resourceId(parameters('managementSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
                 "logs": [
                   {
                     "category": "SQLSecurityAuditEvents",
@@ -160,7 +160,7 @@
                 "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), 'master')]"
               ],
               "properties": {
-                "workspaceId": "[resourceId(parameters('mgmtSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
+                "workspaceId": "[resourceId(parameters('managementSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
                 "logs": [
                   {
                     "category": "SQLInsights",
@@ -269,7 +269,7 @@
             "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]"
           ],
           "properties": {
-            "workspaceId": "[resourceId(parameters('mgmtSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
+            "workspaceId": "[resourceId(parameters('managementSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
             "logs": [
               {
                 "category": "AuditEvent",
@@ -349,7 +349,7 @@
             "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
           ],
           "properties": {
-            "workspaceId": "[resourceId(parameters('mgmtSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
+            "workspaceId": "[resourceId(parameters('managementSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
             "metrics": [
               {
                 "category": "AllMetrics",
@@ -402,7 +402,7 @@
             "[resourceId('Microsoft.Web/sites', variables('appServiceAppName'))]"
           ],
           "properties": {
-            "workspaceId": "[resourceId(parameters('mgmtSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
+            "workspaceId": "[resourceId(parameters('managementSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
             "logs": [
               {
                 "category": "AppServiceAntivirusScanAuditLogs",
@@ -481,7 +481,7 @@
                 "[resourceId('Microsoft.Web/sites/slots', variables('appServiceAppName'), 'staging')]"
               ],
               "properties": {
-                "workspaceId": "[resourceId(parameters('mgmtSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
+                "workspaceId": "[resourceId(parameters('managementSubscriptionId'),'mgmt-rg','Microsoft.OperationalInsights/workspaces', variables('logAnalyticsName'))]",
                 "logs": [
                   {
                     "category": "AppServiceAntivirusScanAuditLogs",
