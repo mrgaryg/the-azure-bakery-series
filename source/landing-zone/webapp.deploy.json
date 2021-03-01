@@ -32,13 +32,20 @@
       "type": "string",
       "defaultValue": "azureadmin",
       "metadata": {
-        "description": "Admin user name for the Azure SQL instance"
+        "description": "Admin user name for the Azure SQL Server instance"
       }
     },
     "sqlAdminPassword": {
       "type": "securestring",
       "metadata": {
-        "description": "Admin password for the Azure SQL instance"
+        "description": "Admin password for the Azure SQL Server instance"
+      }
+    },
+    "sqlDatabaseName": {
+      "type": "string",
+      "defaultValue": "sqldb01",
+      "metadata": {
+        "description": "Name for the first Azure SQL Database"
       }
     },
     "keyVault": {
@@ -78,7 +85,6 @@
     "logAnalyticsName": "[concat(parameters('uniqueIdentifier'), '-mgmt-log01')]",
     "keyVaultName": "[concat(parameters('uniqueIdentifier'), '-webapp-kv01')]",
     "sqlServerName": "[concat(parameters('uniqueIdentifier'), '-webapp-sql01')]",
-    "sqlDatabaseName": "[concat(parameters('uniqueIdentifier'), '-webapp-sqldb01')]",
     "appServicePlanName": "[concat(parameters('uniqueIdentifier'), '-webapp-plan01')]",
     "appServiceAppName": "[concat(parameters('uniqueIdentifier'), '-webapp-app01')]"
   },
@@ -144,7 +150,7 @@
           "comments": "Application database",
           "type": "databases",
           "apiVersion": "2020-08-01-preview",
-          "name": "[variables('sqlDatabaseName')]",
+          "name": "[parameters('sqlDatabaseName')]",
           "location": "[parameters('location')]",
           "tags": "[parameters('tagValues')]",
           "dependsOn": [
@@ -157,7 +163,7 @@
               "apiVersion": "2017-05-01-preview",
               "name": "[concat('Microsoft.Insights/default', ' ', variables('logAnalyticsName'))]",
               "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), variables('sqlDatabaseName'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), parameters('sqlDatabaseName'))]",
                 "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), 'master')]"
               ],
               "properties": {
@@ -297,7 +303,7 @@
         "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
       ],
       "properties": {
-        "value": "[concat('Data Source=tcp:', reference(resourceId('Microsoft.Sql/servers',variables('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('sqlDatabaseName'), ';User Id=', parameters('sqlAdminUserName'), '@', variables('sqlServerName'), ';Password=', parameters('sqlAdminPassword'), ';')]"
+        "value": "[concat('Data Source=tcp:', reference(resourceId('Microsoft.Sql/servers',variables('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('sqlDatabaseName'), ';User Id=', parameters('sqlAdminUserName'), '@', variables('sqlServerName'), ';Password=', parameters('sqlAdminPassword'), ';')]"
       }
     },
     {
