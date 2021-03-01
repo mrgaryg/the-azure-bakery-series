@@ -82,6 +82,7 @@
     "appServicePlanName": "[concat(parameters('uniqueIdentifier'), '-webapp-plan01')]",
     "appServiceAppName": "[concat(parameters('uniqueIdentifier'), '-webapp-app01')]"
   },
+  "functions": [],
   "resources": [
     {
       "comments": "Azure SQL Server resource",
@@ -771,5 +772,6 @@
         ]
       }
     }
-  ]
+  ],
+  "outputs": {}
 }

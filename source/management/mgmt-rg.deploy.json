@@ -32,6 +32,7 @@
     }
   },
   "variables": {},
+  "functions": [],
   "resources": [
     {
       "comments": "Resource group",
@@ -68,5 +69,6 @@
         }
       }
     }
-  ]
+  ],
+  "outputs": {}
 }

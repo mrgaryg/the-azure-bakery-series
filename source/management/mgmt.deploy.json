@@ -39,6 +39,7 @@
   "variables": {
     "logAnalyticsName": "[concat(parameters('uniqueIdentifier'), '-mgmt-log01')]"
   },
+  "functions": [],
   "resources": [
     {
       "comments": "Log Analytics workspace",
@@ -56,5 +57,6 @@
         }
       }
     }
-  ]
+  ],
+  "outputs": {}
 }
