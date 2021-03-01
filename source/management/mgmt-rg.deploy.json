@@ -6,7 +6,7 @@
       "type": "string",
       "defaultValue": "mgmt-rg",
       "metadata": {
-        "description": "Name of the resource group to create"
+        "description": "Name for the resource group"
       }
     },
     "location": {
