@@ -9,13 +9,19 @@ The idea behind this series is to approach Azure in an easy-to-understand and fu
 ### Management
 
 `az login`
+
 `az account set -s <mgmtSubscriptionId>`
+
 `az deployment sub create -l <location> -f source/management/mgmt-rg.deploy.json`
+
 `az deployment group create -l <location> -f source/management/mgmt.deploy.json`
 
 ### Landing zone
 
 `az login`
+
 `az account set -s <landingZoneSubscriptionId>`
+
 `az deployment sub create -l <location> -f source/landing-zone/webapp-rg.deploy.json`
+
 `az deployment group create -l <location> -f source/landing-zone/webapp.deploy.json`
