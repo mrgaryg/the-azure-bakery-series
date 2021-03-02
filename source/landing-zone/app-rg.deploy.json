@@ -4,15 +4,15 @@
   "parameters": {
     "name": {
       "type": "string",
-      "defaultValue": "webapp-rg",
+      "defaultValue": "app-rg",
       "metadata": {
-        "description": "Name for the resource group"
+        "description": "Optional. Name for the resource group."
       }
     },
     "location": {
       "type": "string",
       "metadata": {
-        "description": "Location for the resource group"
+        "description": "Required. Location for the resource group."
       }
     },
     "tagValues": {
@@ -26,7 +26,7 @@
         "Owner": "john.doe@robino.io"
       },
       "metadata": {
-        "description": "Resource tags"
+        "description": "Optional. Resource tags"
       }
     }
   },
@@ -58,9 +58,9 @@
             {
               "type": "Microsoft.Authorization/locks",
               "apiVersion": "2017-04-01",
-              "name": "resourceGroupCanNotDelete",
+              "name": "canNotDelete",
               "properties": {
-                "level": "CanNotDelete",
+                "level": "canNotDelete",
                 "notes": "Prevent deletion of the resource group"
               }
             }
