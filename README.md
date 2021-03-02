@@ -22,6 +22,6 @@ The idea behind this series is to approach Azure in an easy-to-understand and fu
 
 `az account set -s <landingZoneSubscriptionId>`
 
-`az deployment sub create -l <location> -f source/landing-zone/webapp-rg.deploy.json`
+`az deployment sub create -l <location> -f source/landing-zone/app-rg.deploy.json`
 
-`az deployment group create -g webapp-rg -f source/landing-zone/webapp.deploy.json`
+`az deployment group create -g app-rg -f source/landing-zone/app.deploy.json`
