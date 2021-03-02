@@ -3,7 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "uniqueIdentifier": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "Required. Unique identifier for global name scope."
+      }
     },
     "tagValues": {
       "type": "object",
@@ -16,36 +19,35 @@
         "Owner": "jane.doe@robino.io"
       },
       "metadata": {
-        "description": "Resource tags"
+        "description": "Optional. Resource tags."
       }
     },
     "logAnalytics": {
       "type": "object",
       "defaultValue": {
+        "workspaceName": "[concat(parameters('uniqueIdentifier'), '-mgmt-log01')]",
         "skuName": "free"
       },
       "metadata": {
-        "description": "Deployment settings for the Log Analytics workspace"
+        "description": "Optional. Deployment settings for the Log Analytics workspace."
       }
     },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]",
       "metadata": {
-        "description": "Location for the resources"
+        "description": "Optional. Location for the resources."
       }
     }
   },
-  "variables": {
-    "logAnalyticsName": "[concat(parameters('uniqueIdentifier'), '-mgmt-log01')]"
-  },
+  "variables": {},
   "functions": [],
   "resources": [
     {
       "comments": "Log Analytics workspace",
       "type": "Microsoft.OperationalInsights/workspaces",
       "apiVersion": "2020-08-01",
-      "name": "[variables('logAnalyticsName')]",
+      "name": "[parameters('logAnalytics').workspaceName]",
       "location": "[parameters('location')]",
       "tags": "[parameters('tagValues')]",
       "properties": {
