@@ -58,7 +58,7 @@
             {
               "type": "Microsoft.Authorization/locks",
               "apiVersion": "2017-04-01",
-              "name": "canNotDelete",
+              "name": "resourceGroupCanNotDelete",
               "properties": {
                 "level": "canNotDelete",
                 "notes": "Prevent deletion of the resource group"
