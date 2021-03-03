@@ -4,6 +4,8 @@ Welcome to 'The Azure Bakery'. In this series, I'll show you how to bake your ow
 
 The idea behind this series is to approach Azure in an easy-to-understand and fun way. The goal is to engineer and deploy solutions in the best way possible. At the same time, we're trying to keep it simple.
 
+![alt text](https://github.com/smorenburg/the-azure-bakery-series/blob/main/images/azure-cake.png?raw=true)
+
 ## Deployment steps
 
 ### Management
