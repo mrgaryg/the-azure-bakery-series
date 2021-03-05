@@ -2,7 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "uniqueIdentifier": {
+    "uniqueId": {
       "type": "string",
       "metadata": {
         "description": "Required. Unique identifier for global name scope."
@@ -25,7 +25,7 @@
     "logAnalytics": {
       "type": "object",
       "defaultValue": {
-        "workspaceName": "[concat(parameters('uniqueIdentifier'), '-mgmt-log01')]",
+        "workspaceName": "[concat(parameters('uniqueId'), '-mgmt-log01')]",
         "skuName": "free"
       },
       "metadata": {
