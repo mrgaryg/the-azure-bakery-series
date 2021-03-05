@@ -14,7 +14,7 @@ The design of the environment is based on the enterprise-scale landing zone arch
 
 The App Service app uses a system-assigned managed identity to access and retrieve the Azure SQL Server's connection string. The identity has an active access policy within the key vault. The App Service app will automatically scale based on the CPU load and has two deployment slots. There are four basic Azure Monitor alert rules configured to monitor the web application.
 
-![The landing zone design](https://github.com/smorenburg/the-azure-bakery-series/blob/main/images/the-azure-bakery-series-landing-zone-design.png?raw=true)
+![The landing zone and workload design](https://github.com/smorenburg/the-azure-bakery-series/blob/main/images/the-azure-bakery-series-landing-zone-design.png?raw=true)
 
 ## Deployment steps
 
