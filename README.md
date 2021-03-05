@@ -6,7 +6,11 @@ The idea behind this series is to approach Azure in an easy-to-understand and fu
 
 [Click here](https://itnext.io/the-azure-bakery-series-introduction-277be6b7cdd3?source=friends_link&sk=5a0f506c63bd47be964728d462ace005 "The Azure Bakery series: Introduction") for the introduction to the series.
 
-![An Azure cake](https://github.com/smorenburg/the-azure-bakery-series/blob/main/images/azure-cake.png?raw=true)
+![An Azure cake](https://github.com/smorenburg/the-azure-bakery-series/blob/main/images/the-azure-bakery-series-cake.png?raw=true)
+
+## Design
+
+![The landing zone design](https://github.com/smorenburg/the-azure-bakery-series/blob/main/images/the-azure-bakery-series-landing-zone-design.png?raw=true)
 
 ## Deployment steps
 
