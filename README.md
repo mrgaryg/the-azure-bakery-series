@@ -8,9 +8,9 @@ The idea behind this series is to approach Azure in an easy-to-understand and fu
 
 ![An Azure cake](https://github.com/smorenburg/the-azure-bakery-series/blob/main/images/the-azure-bakery-series-cake.png?raw=true)
 
-## Design
+## Design recipe
 
-The design of the environment is based on the enterprise-scale landing zone architecture framework. The 'Management' subscription contains a Log Analytics workspace for centralizing the logs, metrics, and audit data for this and future workloads. The 'Landing zone' subscription includes the web application based on an App Service app with an Azure SQL Database as a backend.
+The environment's design recipe is based on the enterprise-scale landing zone architecture framework, illustrated in the diagram below; the 'Management' subscription contains a Log Analytics workspace for centralizing the logs, metrics, and audit data. The 'Landing zone' subscription includes the web application based on an App Service app with an Azure SQL Database as a backend.
 
 The App Service app uses a system-assigned managed identity to access and retrieve the Azure SQL Server's connection string. The identity has an active access policy within the key vault. The App Service app will automatically scale based on the CPU load and has two deployment slots. There are four basic Azure Monitor alert rules configured to monitor the web application.
 
