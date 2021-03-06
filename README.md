@@ -10,30 +10,73 @@ The idea behind this series is to approach Azure in an easy-to-understand and fu
 
 ## Design recipe
 
-The environment's design recipe is based on the enterprise-scale landing zone architecture framework, illustrated in the diagram below; the 'Management' subscription contains a Log Analytics workspace for centralizing the logs, metrics, and audit data. The 'Landing zone' subscription includes the web application based on an App Service app with an Azure SQL Database as a backend.
+The environment's design recipe is based on the enterprise-scale landing zone architecture framework, illustrated in the diagram below. The 'Management' subscription contains a Log Analytics workspace for centralizing the logs, metrics, and audit data. And the 'Landing zone' subscription includes the web application based on an App Service app with an Azure SQL Database as a backend.
 
-The App Service app uses a system-assigned managed identity to access and retrieve the Azure SQL Server's connection string. The identity has an active access policy within the key vault. The App Service app will automatically scale based on the CPU load and has two deployment slots. There are four basic Azure Monitor alert rules configured to monitor the web application.
+The App Service app uses a system-assigned managed identity to access and retrieve the Azure SQL Server's connection string from the Azure Key Vault. There's an access policy with the object's identifier of the managed identity to access the key vault's secrets. There's an auto-scaling rule configured that will scale the App Service app based on the CPU load. Two deployment slots allow you to deploy into staging and swapping this into production. And four Azure Monitor alert rules to monitor the web application.
 
 ![The landing zone and workload design](https://github.com/smorenburg/the-azure-bakery-series/blob/main/images/the-azure-bakery-series-landing-zone-design.png?raw=true)
 
 ## Deployment steps
 
+```bash
+az login
+```
+
 ### Management
 
-`az login`
+```bash
+az deployment sub create \
+    --location <location> \
+    --template-file source/management/mgmt-rg.deploy.json \
+    --parameters location=<location> \
+    --subscription <mgmtSubscriptionId>
+```
 
-`az account set -s <managementSubscriptionId>`
-
-`az deployment sub create -l <location> -f source/management/mgmt-rg.deploy.json`
-
-`az deployment group create -g mgmt-rg -f source/management/mgmt.deploy.json`
+```bash
+az deployment group create \
+    --resource-group mgmt-rg \
+    --template-file source/management/mgmt.deploy.json \
+    --parameters uniqueId=<uniqueId> \
+    --subscription <mgmtSubscriptionId>
+```
 
 ### Landing zone
 
-`az login`
+```bash
+az deployment sub create \
+    --location <location> \
+    --template-file source/landing-zone/app-rg.deploy.json \
+    --parameters location=<location> \
+    --subscription <lzSubscriptionId>
+```
 
-`az account set -s <landingZoneSubscriptionId>`
+```bash
+az deployment group create \
+    --resource-group app-rg \
+    --template-file source/landing-zone/app.deploy.json \
+    --parameters uniqueId=<uniqueId> \
+                 mgmtSubscriptionId=<mgmtSubscriptionId> \
+    --subscription <lzSubscriptionId>
+```
 
-`az deployment sub create -l <location> -f source/landing-zone/app-rg.deploy.json`
+### Remove delete locks and resource groups
 
-`az deployment group create -g app-rg -f source/landing-zone/app.deploy.json`
+```bash
+az lock delete \
+    --name rgCanNotDelete \
+    --resource-group app-rg \
+    --subscription <lzSubscriptionId>
+
+az group delete \
+    --name app-rg \
+    --subscription <lzSubscriptionId>
+
+az lock delete \
+    --name rgCanNotDelete \
+    --resource-group mgmt-rg \
+    --subscription <mgmtSubscriptionId>
+
+az group delete \
+    --name mgmt-rg \
+    --subscription <mgmtSubscriptionId>
+```
