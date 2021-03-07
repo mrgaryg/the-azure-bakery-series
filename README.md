@@ -20,7 +20,7 @@ The App Service app uses a system-assigned managed identity to access and retrie
 
 And there's an auto-scaling rule configured that will scale the App Service app based on the CPU load. Two deployment slots allow you to deploy into staging and swapping this into production. And four Azure Monitor alert rules to monitor the web application.
 
-## Deployment steps
+## Baking
 
 ```bash
 az login
