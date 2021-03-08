@@ -17,7 +17,7 @@
     "tagValues": {
       "type": "object",
       "defaultValue": {
-        "WorkloadName": "Web Application",
+        "WorkloadName": "Web App",
         "DataClassification": "Public",
         "Criticality": "Medium",
         "BusinessUnit": "Marketing",
